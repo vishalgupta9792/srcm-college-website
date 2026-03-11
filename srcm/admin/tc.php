@@ -28,11 +28,11 @@ if (isset($_GET['edit'])) {
 
 $search = clean($_GET['search']??'');
 if ($search) {
-    $stmt = $db->prepare("SELECT * FROM tc_records WHERE is_active=1 AND (tc_number LIKE ? OR student_name LIKE ? OR father_name LIKE ?) ORDER BY created_at DESC");
+    $stmt = $db->prepare("SELECT * FROM tc_records WHERE is_active=1 AND (tc_number LIKE ? OR student_name LIKE ? OR father_name LIKE ?) ORDER BY id DESC");
     $stmt->execute(["%$search%","%$search%","%$search%"]);
     $items = $stmt->fetchAll();
 } else {
-    $items = $db->query("SELECT * FROM tc_records WHERE is_active=1 ORDER BY created_at DESC")->fetchAll();
+    $items = $db->query("SELECT * FROM tc_records WHERE is_active=1 ORDER BY id DESC")->fetchAll();
 }
 [$msgType, $msgText] = $msg ? explode('|',$msg,2) : ['',''];
 ?>
