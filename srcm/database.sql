@@ -119,6 +119,12 @@ CREATE TABLE gallery (
   FOREIGN KEY (category_id) REFERENCES gallery_categories(id)
 );
 
+INSERT INTO gallery (category_id, title, image_path, sort_order) VALUES
+(1, 'Annual Function Stage Performance', 'gallery/annual-function-1.png', 1),
+(2, 'Sports Day Prize Distribution', 'gallery/sports-day-1.png', 2),
+(6, 'Science Lab Practical Session', 'gallery/science-lab-1.png', 3),
+(5, 'Independence Day Celebration', 'gallery/independence-day-1.png', 4);
+
 -- Results
 CREATE TABLE results (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -219,6 +225,11 @@ CREATE TABLE tc_records (
   is_active TINYINT(1) DEFAULT 1
 );
 
+INSERT INTO tc_records (tc_number, student_name, father_name, class, stream, admission_year, leaving_year, issue_date) VALUES
+('TC-2024-001', 'Rahul Kumar', 'Mahesh Kumar', 'Class 10', 'All', '2022', '2024', '2024-04-10'),
+('TC-2024-002', 'Pooja Singh', 'Rakesh Singh', 'Class 12', 'Science', '2022', '2024', '2024-05-22'),
+('TC-2025-003', 'Anjali Yadav', 'Suresh Yadav', 'Class 11', 'Arts', '2023', '2025', '2025-01-18');
+
 -- Admissions / Enquiries
 CREATE TABLE enquiries (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -232,6 +243,12 @@ CREATE TABLE enquiries (
   status ENUM('new','contacted','admitted','rejected') DEFAULT 'new',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO enquiries (student_name, father_name, phone, email, class_applying, stream, message, status, created_at) VALUES
+('Aman Verma', 'Dinesh Verma', '+91-9876500011', 'aman@example.com', 'Class 11', 'Science', 'Need admission details for science stream.', 'new', '2026-03-08 10:15:00'),
+('Sakshi Gupta', 'Vinod Gupta', '+91-9876500012', 'sakshi@example.com', 'Class 9', 'All', 'Please share fee structure and documents required.', 'contacted', '2026-03-07 12:40:00'),
+('Nitin Mishra', 'Rajesh Mishra', '+91-9876500013', 'nitin@example.com', 'Class 12', 'Commerce', 'Interested in transfer admission.', 'admitted', '2026-03-06 09:30:00'),
+('Kajal Srivastava', 'Sunil Srivastava', '+91-9876500014', 'kajal@example.com', 'Class 11', 'Arts', 'Wanted to know about transport facility.', 'new', '2026-03-05 03:20:00');
 
 -- Testimonials / Thoughts
 CREATE TABLE thoughts (
@@ -275,3 +292,8 @@ CREATE TABLE contact_messages (
   is_read TINYINT(1) DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO contact_messages (name, phone, email, subject, message, is_read, created_at) VALUES
+('Ravi Shukla', '+91-9123400011', 'ravi@example.com', 'Admission Enquiry', 'Please tell me the admission process for Class 11 Science.', 0, '2026-03-08 11:00:00'),
+('Neha Pandey', '+91-9123400012', 'neha@example.com', 'Result Query', 'I want to know when the detailed result sheet will be available.', 1, '2026-03-07 02:25:00'),
+('Arjun Singh', '+91-9123400013', 'arjun@example.com', 'TC Request', 'Please guide me about transfer certificate processing time.', 0, '2026-03-06 04:10:00');
